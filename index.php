@@ -4,6 +4,8 @@
 
   #echo "HTML.php";
 
+  echo Html::sctag("!doctype html");
+
    echo Html::tag(
     "div",
     [
@@ -16,21 +18,21 @@
   );
 
 
-  // echo Html::sctag(
-  //   "img",
-  //   [
-  //     "class" => "my-img",
-  //     "srcset" =>
-  //     [
-  //       "2x" => "logo-large",
-  //       "4x" => "logo-ultra"
-  //     ],
-  //     "sizes" =>
-  //     [
-  //       "(min-width: 600px)" => "200px",
-  //       "" => "50vw"
-  //     ]
-  //   ]
-  // );
+  echo Html::sctag(
+    "img",
+    [
+      "class" => "my-img",
+      "srcset" =>
+      [
+        "2x" => "logo-large",
+        "4x" => "logo-ultra"
+      ],
+      "sizes" =>
+      [
+        "(min-width: 600px)" => "200px",
+        "" => "50vw"
+      ]
+    ]
+  );
 
 ?>

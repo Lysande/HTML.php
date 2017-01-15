@@ -12,6 +12,10 @@
   {
     const SELF_CLOSING_TAG = 0x1;
 
+    /**
+     * Generic methods.
+     */
+
     protected static function generateTagTemplate($tagName, $isSelfClosing = 0x0)
     {
       if ($isSelfClosing == self::SELF_CLOSING_TAG)
@@ -55,7 +59,6 @@
 
     protected static function generateChildren($children = [])
     {
-      var_dump($children);
       return implode(" ", $children);
     }
 
@@ -71,7 +74,7 @@
       $attributes = self::generateAttributes($attributes);
       $children = self::generateChildren($children);
 
-     return sprintf($tag, $attributes, $children);
+      return sprintf($tag, $attributes, $children);
     }
     /**
      * Self-Closing tag
@@ -84,5 +87,15 @@
       $attributes = self::generateAttributes($attributes);
 
       return sprintf($tag, $attributes);
+    }
+
+
+    /**
+     * HTML tag specifics.
+     */
+
+    public static function div($attributes, $children)
+    {
+      return self::tag("div", $attributes, $children);
     }
   }
