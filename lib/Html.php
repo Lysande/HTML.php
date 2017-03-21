@@ -7,6 +7,7 @@
    */
 
   include "AttributeFormatFactory.php";
+  include "HTMLElements.php";
 
   class Html
   {
@@ -20,13 +21,13 @@
     {
       if ($isSelfClosing == self::SELF_CLOSING_TAG)
       {
-        return "<$tagName %s>";
+        return "<$tagName%s>";
       }
 
-      return "<$tagName %s>%s</$tagName>";
+      return "<$tagName%s>%s</$tagName>";
     }
 
-    protected static function generateAttributes($attributes, $format = "_")
+    protected static function generateAttributes($attributes, $format = "")
     {
       $format = AttributeFormatFactory::get($format);
 
@@ -48,8 +49,6 @@
           $child_format = $k;
           $v = self::generateAttributes($child_attributes, $child_format);
         }
-
-
 
         return str_replace(["%k", "%v"], [$k, $v], $format->getPattern());
       }, $attributes, array_keys($attributes));
@@ -74,6 +73,11 @@
       $attributes = self::generateAttributes($attributes);
       $children = self::generateChildren($children);
 
+      if (!!strlen($attributes))
+      {
+        $attributes = " $attributes";
+      }
+
       return sprintf($tag, $attributes, $children);
     }
     /**
@@ -86,16 +90,17 @@
       $tag = self::generateTagTemplate($tagName, self::SELF_CLOSING_TAG);
       $attributes = self::generateAttributes($attributes);
 
+      if (!!strlen($attributes))
+      {
+        $attributes = " $attributes";
+      }
+
       return sprintf($tag, $attributes);
     }
 
-
     /**
-     * HTML tag specifics.
+     * Store specific methods in trait.
      */
+    use HTMLElements;
 
-    public static function div($attributes, $children)
-    {
-      return self::tag("div", $attributes, $children);
-    }
   }

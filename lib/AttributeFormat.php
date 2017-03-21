@@ -16,7 +16,7 @@
     {
       return $this->pattern;
     }
-    
+
     public function getCombinator()
     {
       return $this->combinator;
