@@ -85,7 +85,7 @@
      * @param  [type] $attributes [description]
      * @return [type]             [description]
      */
-    public static function emptyelement($elementName, $attributes = [])
+    public static function emptyElement($elementName, $attributes = [])
     {
       $element = self::generateElementTemplate($elementName, self::EMPTY_ELEMENT);
       $attributes = self::generateAttributes($attributes);
