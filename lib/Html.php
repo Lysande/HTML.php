@@ -11,20 +11,20 @@
 
   class Html
   {
-    const SELF_CLOSING_TAG = 0x1;
+    const EMPTY_ELEMENT = 0x1;
 
     /**
      * Generic methods.
      */
 
-    protected static function generateTagTemplate($tagName, $isSelfClosing = 0x0)
+    protected static function generateElementTemplate($elementName, $isEmpty = 0x0)
     {
-      if ($isSelfClosing == self::SELF_CLOSING_TAG)
+      if ($isEmpty == self::EMPTY_ELEMENT)
       {
-        return "<$tagName%s>";
+        return "<$elementName%s>";
       }
 
-      return "<$tagName%s>%s</$tagName>";
+      return "<$elementName%s>%s</$elementName>";
     }
 
     protected static function generateAttributes($attributes, $format = "")
@@ -62,14 +62,14 @@
     }
 
     /**
-     * Creates a tag
+     * Creates a element
      * @param  [type] $attributes [description]
      * @param  [type] $children   [description]
      * @return [type]             [description]
      */
-    public static function tag($tagName, $attributes = [], $children = [])
+    public static function element($elementName, $attributes = [], $children = [])
     {
-      $tag = self::generateTagTemplate($tagName);
+      $element = self::generateElementTemplate($elementName);
       $attributes = self::generateAttributes($attributes);
       $children = self::generateChildren($children);
 
@@ -78,16 +78,16 @@
         $attributes = " $attributes";
       }
 
-      return sprintf($tag, $attributes, $children);
+      return sprintf($element, $attributes, $children);
     }
     /**
-     * Self-Closing tag
+     * Self-Closing element
      * @param  [type] $attributes [description]
      * @return [type]             [description]
      */
-    public static function sctag($tagName, $attributes = [])
+    public static function emptyelement($elementName, $attributes = [])
     {
-      $tag = self::generateTagTemplate($tagName, self::SELF_CLOSING_TAG);
+      $element = self::generateElementTemplate($elementName, self::EMPTY_ELEMENT);
       $attributes = self::generateAttributes($attributes);
 
       if (!!strlen($attributes))
@@ -95,7 +95,7 @@
         $attributes = " $attributes";
       }
 
-      return sprintf($tag, $attributes);
+      return sprintf($element, $attributes);
     }
 
     /**
