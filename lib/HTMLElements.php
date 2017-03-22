@@ -26,9 +26,9 @@
       return self::element("applet", $attributes, $children);
     }
 
-    public static function area($attributes = [], $children = [])
+    public static function area($attributes = [])
     {
-      return self::element("area", $attributes, $children);
+      return self::emtpyElement("area", $attributes);
     }
 
     public static function article($attributes = [], $children = [])
@@ -51,9 +51,9 @@
       return self::element("b", $attributes, $children);
     }
 
-    public static function base($attributes = [], $children = [])
+    public static function base($attributes = [])
     {
-      return self::element("base", $attributes, $children);
+      return self::emptyElement("base", $attributes);
     }
 
     public static function basefont($attributes = [], $children = [])
@@ -96,9 +96,9 @@
       return self::element("body", $attributes, $children);
     }
 
-    public static function br($attributes = [], $children = [])
+    public static function br($attributes = [])
     {
-      return self::element("br", $attributes, $children);
+      return self::emptyElement("br", $attributes);
     }
 
     public static function button($attributes = [], $children = [])
@@ -131,9 +131,9 @@
       return self::element("code", $attributes, $children);
     }
 
-    public static function col($attributes = [], $children = [])
+    public static function col($attributes = [])
     {
-      return self::element("col", $attributes, $children);
+      return self::emptyElement("col", $attributes);
     }
 
     public static function colgroup($attributes = [], $children = [])
@@ -216,9 +216,9 @@
       return self::element("em", $attributes, $children);
     }
 
-    public static function embed($attributes = [], $children = [])
+    public static function embed($attributes = [])
     {
-      return self::element("embed", $attributes, $children);
+      return self::emptyElement("embed", $attributes);
     }
 
     public static function fieldset($attributes = [], $children = [])
@@ -281,9 +281,9 @@
       return self::element("hgroup", $attributes, $children);
     }
 
-    public static function hr($attributes = [], $children = [])
+    public static function hr($attributes = [])
     {
-      return self::element("hr", $attributes, $children);
+      return self::emptyElement("hr", $attributes);
     }
 
     public static function html($attributes = [], $children = [])
@@ -306,14 +306,14 @@
       return self::element("image", $attributes, $children);
     }
 
-    public static function img($attributes = [], $children = [])
+    public static function img($attributes = [])
     {
-      return self::element("img", $attributes, $children);
+      return self::emptyElement("img", $attributes);
     }
 
-    public static function input($attributes = [], $children = [])
+    public static function input($attributes = [])
     {
-      return self::element("input", $attributes, $children);
+      return self::emptyElement("input", $attributes);
     }
 
     public static function ins($attributes = [], $children = [])
@@ -331,9 +331,9 @@
       return self::element("kbd", $attributes, $children);
     }
 
-    public static function keygen($attributes = [], $children = [])
+    public static function keygen($attributes = [])
     {
-      return self::element("keygen", $attributes, $children);
+      return self::emptyElement("keygen", $attributes);
     }
 
     public static function label($attributes = [], $children = [])
@@ -351,9 +351,9 @@
       return self::element("li", $attributes, $children);
     }
 
-    public static function link($attributes = [], $children = [])
+    public static function link($attributes = [])
     {
-      return self::element("link", $attributes, $children);
+      return self::emptyElement("link", $attributes);
     }
 
     public static function listing($attributes = [], $children = [])
@@ -391,9 +391,9 @@
       return self::element("menuitem", $attributes, $children);
     }
 
-    public static function meta($attributes = [], $children = [])
+    public static function meta($attributes = [])
     {
-      return self::element("meta", $attributes, $children);
+      return self::emptyElement("meta", $attributes);
     }
 
     public static function meter($attributes = [], $children = [])
@@ -461,9 +461,9 @@
       return self::element("p", $attributes, $children);
     }
 
-    public static function param($attributes = [], $children = [])
+    public static function param($attributes = [])
     {
-      return self::element("param", $attributes, $children);
+      return self::emptyElement("param", $attributes);
     }
 
     public static function picture($attributes = [], $children = [])
@@ -551,9 +551,9 @@
       return self::element("small", $attributes, $children);
     }
 
-    public static function source($attributes = [], $children = [])
+    public static function source($attributes = [])
     {
-      return self::element("source", $attributes, $children);
+      return self::emptyElement("source", $attributes);
     }
 
     public static function spacer($attributes = [], $children = [])
@@ -651,9 +651,9 @@
       return self::element("tr", $attributes, $children);
     }
 
-    public static function track($attributes = [], $children = [])
+    public static function track($attributes = [])
     {
-      return self::element("track", $attributes, $children);
+      return self::emptyElement("track", $attributes);
     }
 
     public static function tt($attributes = [], $children = [])
@@ -682,9 +682,9 @@
       return self::element("video", $attributes, $children);
     }
 
-    public static function wbr($attributes = [], $children = [])
+    public static function wbr($attributes = [])
     {
-      return self::element("wbr", $attributes, $children);
+      return self::emptyElement("wbr", $attributes);
     }
 
     public static function xmp($attributes = [], $children = [])
