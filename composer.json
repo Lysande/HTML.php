@@ -1,0 +1,15 @@
+{
+    "name": "lysande/html",
+    "description": "A small, simple HTML library, inspired by Elm.",
+    "homepage": "http://github.com/lysande/html",
+    "authors": [
+      {
+        "name": "Emil Johnsen",
+        "email": "johnsen.emil@gmail.com"
+      }
+    ],
+    "keywords": ["markup", "html", "elm"],
+    "require": {
+        "php": "^5.6.0 || ^7.0"
+    }
+}
