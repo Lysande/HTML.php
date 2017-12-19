@@ -1,5 +1,6 @@
 <?php
 
+  declare(strict_types=1);
 
   /**
    * Lib for generating HTML code,
@@ -13,7 +14,7 @@
   {
     const ERROR_UNKNOWN_ELEMENT = 'Could not recognize element name';
 
-    public static function __callStatic($element, $arguments)
+    public static function __callStatic(string $element, $arguments)
     {
       $type = ElementType::for($element);
 
@@ -31,7 +32,7 @@
     /**
      * Generic methods.
      */
-    protected static function generateElementTemplate($tag, $isEmpty = 0x0)
+    protected static function generateElementTemplate(string $tag, int $isEmpty = 0x0): string
     {
       if ($isEmpty == ElementType::EMPTY_ELEMENT)
       {
@@ -41,7 +42,7 @@
       return "<$tag%s>%s</$tag>";
     }
 
-    protected static function generateAttributes($attributes, $format = "")
+    protected static function generateAttributes(array $attributes, string $format = ""): string
     {
       $format = AttributeFormatFactory::get($format);
 
@@ -76,7 +77,7 @@
      * @param  [type] $children   [description]
      * @return [type]             [description]
      */
-    public static function element($elementName, $attributes = [], ...$children)
+    public static function element(string $elementName, array $attributes = [], ...$children): string
     {
       $element = self::generateElementTemplate($elementName);
       $attributes = self::generateAttributes($attributes);
@@ -94,7 +95,7 @@
      * @param  [type] $attributes [description]
      * @return [type]             [description]
      */
-    public static function emptyElement($elementName, $attributes = [])
+    public static function emptyElement(string $elementName, array $attributes = []): string
     {
       $element = self::generateElementTemplate($elementName, ElementType::EMPTY_ELEMENT);
       $attributes = self::generateAttributes($attributes);
