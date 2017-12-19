@@ -2,21 +2,19 @@
 
   include "lib/Html.php";
 
-  echo Html::sctag("!doctype html");
+  echo Html::emptyElement("!doctype html");
 echo "\n";echo "\n";
-   echo Html::tag(
+   echo Html::element(
     "div",
     [
       "class" => "my-div",
       "style" => ["color" => "red", "font-size" => "14px"]
     ],
-    [
-      Html::tag("h1", ["class" => "main-heading"], ["Välkommen!"])
-    ]
+    Html::element("h1", ["class" => "main-heading"], "Välkommen!")
   );
 echo "\n";
 echo "\n";
-  echo Html::sctag(
+  echo Html::emptyElement(
     "img",
     [
       "class" => "my-img",
@@ -33,10 +31,9 @@ echo "\n";
     ]
   );
 echo "\n";echo "\n";
-  echo Html::div();
+  echo Html::divasdasd();
   echo "\n";echo "\n";
   echo Html::div(["id" => "my-div"]);
   echo "\n";echo "\n";
   echo Html::div(["style" => ["color" => "red"]]);
-
 ?>

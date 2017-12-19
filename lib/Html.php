@@ -1,5 +1,6 @@
 <?php
 
+  declare(strict_types=1);
 
   /**
    * Lib for generating HTML code,
@@ -7,27 +8,41 @@
    */
 
   include "AttributeFormatFactory.php";
-  include "HTMLElements.php";
+  include "ElementType.php";
 
-  class Html
+  abstract class Html
   {
-    const EMPTY_ELEMENT = 0x1;
+    const ERROR_UNKNOWN_ELEMENT = 'Could not recognize element name';
+
+    public static function __callStatic(string $element, $arguments)
+    {
+      $type = ElementType::for($element);
+
+      if ($type === null)
+      {
+        throw new Exception(self::ERROR_UNKNOWN_ELEMENT);
+      }
+
+      $args = array_merge([$element], $arguments);
+      $method = $type === ElementType::EMPTY_ELEMENT ? 'emptyElement' : 'element';
+
+      call_user_func_array(['self', $method], $args);
+    }
 
     /**
      * Generic methods.
      */
-
-    protected static function generateElementTemplate($elementName, $isEmpty = 0x0)
+    protected static function generateElementTemplate(string $tag, int $isEmpty = 0x0): string
     {
-      if ($isEmpty == self::EMPTY_ELEMENT)
+      if ($isEmpty == ElementType::EMPTY_ELEMENT)
       {
-        return "<$elementName%s>";
+        return "<$tag%s>";
       }
 
-      return "<$elementName%s>%s</$elementName>";
+      return "<$tag%s>%s</$tag>";
     }
 
-    protected static function generateAttributes($attributes, $format = "")
+    protected static function generateAttributes(array $attributes, string $format = ""): string
     {
       $format = AttributeFormatFactory::get($format);
 
@@ -56,22 +71,17 @@
       return implode($format->getCombinator(), $attributes);
     }
 
-    protected static function generateChildren($children = [])
-    {
-      return implode(" ", $children);
-    }
-
     /**
      * Creates a element
      * @param  [type] $attributes [description]
      * @param  [type] $children   [description]
      * @return [type]             [description]
      */
-    public static function element($elementName, $attributes = [], $children = [])
+    public static function element(string $tagName, array $attributes = [], ...$children): string
     {
-      $element = self::generateElementTemplate($elementName);
+      $element = self::generateElementTemplate($tagName);
       $attributes = self::generateAttributes($attributes);
-      $children = self::generateChildren($children);
+      $children = implode(" ", $children);
 
       if (!!strlen($attributes))
       {
@@ -85,9 +95,9 @@
      * @param  [type] $attributes [description]
      * @return [type]             [description]
      */
-    public static function emptyElement($elementName, $attributes = [])
+    public static function emptyElement(string $tagName, array $attributes = []): string
     {
-      $element = self::generateElementTemplate($elementName, self::EMPTY_ELEMENT);
+      $element = self::generateElementTemplate($tagName, ElementType::EMPTY_ELEMENT);
       $attributes = self::generateAttributes($attributes);
 
       if (!!strlen($attributes))
@@ -97,10 +107,4 @@
 
       return sprintf($element, $attributes);
     }
-
-    /**
-     * Store specific methods in trait.
-     */
-    use HTMLElements;
-
   }
