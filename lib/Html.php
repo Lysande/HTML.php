@@ -7,19 +7,33 @@
    */
 
   include "AttributeFormatFactory.php";
-  include "HTMLElements.php";
+  include "ElementType.php";
 
-  class Html
+  abstract class Html
   {
-    const EMPTY_ELEMENT = 0x1;
+    const ERROR_UNKNOWN_ELEMENT = 'Could not recognize element name';
+
+    public static function __callStatic($element, $arguments)
+    {
+      $type = ElementType::for($element);
+
+      if ($type === null)
+      {
+        throw new Exception(self::ERROR_UNKNOWN_ELEMENT);
+      }
+
+      $args = array_merge([$element], $arguments);
+      $method = $type === ElementType::EMPTY_ELEMENT ? 'emptyElement' : 'element';
+
+      call_user_func_array(['self', $method], $args);
+    }
 
     /**
      * Generic methods.
      */
-
     protected static function generateElementTemplate($elementName, $isEmpty = 0x0)
     {
-      if ($isEmpty == self::EMPTY_ELEMENT)
+      if ($isEmpty == ElementType::EMPTY_ELEMENT)
       {
         return "<$elementName%s>";
       }
@@ -87,7 +101,7 @@
      */
     public static function emptyElement($elementName, $attributes = [])
     {
-      $element = self::generateElementTemplate($elementName, self::EMPTY_ELEMENT);
+      $element = self::generateElementTemplate($elementName, ElementType::EMPTY_ELEMENT);
       $attributes = self::generateAttributes($attributes);
 
       if (!!strlen($attributes))
@@ -97,10 +111,4 @@
 
       return sprintf($element, $attributes);
     }
-
-    /**
-     * Store specific methods in trait.
-     */
-    use HTMLElements;
-
   }
