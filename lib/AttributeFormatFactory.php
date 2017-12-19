@@ -20,8 +20,7 @@ class AttributeFormatFactory
     {
       $format = "";
     }
-    $format = self::$attributeFormats[$format];
 
-    return new AttributeFormat($format[0], $format[1]);
+    return new AttributeFormat(...self::$attributeFormats[$format]);
   }
 }

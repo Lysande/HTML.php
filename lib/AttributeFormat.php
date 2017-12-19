@@ -9,7 +9,7 @@
     function __construct($pattern, $combinator)
     {
       $this->pattern = $pattern;
-      $this->combinator= $combinator;
+      $this->combinator = $combinator;
     }
 
     public function getPattern()
