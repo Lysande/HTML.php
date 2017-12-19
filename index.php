@@ -31,7 +31,7 @@ echo "\n";
     ]
   );
 echo "\n";echo "\n";
-  echo Html::div();
+  echo Html::divasdasd();
   echo "\n";echo "\n";
   echo Html::div(["id" => "my-div"]);
   echo "\n";echo "\n";

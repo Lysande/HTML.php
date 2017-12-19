@@ -2,11 +2,7 @@
   abstract class ElementType
   {
     public static function for($element) {
-      if (isset(self::Elements[$element])) {
-        return self::Elements[$element];
-      }
-
-      return null;
+      return self::Elements[$element] ?? null;
     }
 
     const EMPTY_ELEMENT = 0x1;

@@ -77,9 +77,9 @@
      * @param  [type] $children   [description]
      * @return [type]             [description]
      */
-    public static function element(string $elementName, array $attributes = [], ...$children): string
+    public static function element(string $tagName, array $attributes = [], ...$children): string
     {
-      $element = self::generateElementTemplate($elementName);
+      $element = self::generateElementTemplate($tagName);
       $attributes = self::generateAttributes($attributes);
       $children = implode(" ", $children);
 
@@ -95,9 +95,9 @@
      * @param  [type] $attributes [description]
      * @return [type]             [description]
      */
-    public static function emptyElement(string $elementName, array $attributes = []): string
+    public static function emptyElement(string $tagName, array $attributes = []): string
     {
-      $element = self::generateElementTemplate($elementName, ElementType::EMPTY_ELEMENT);
+      $element = self::generateElementTemplate($tagName, ElementType::EMPTY_ELEMENT);
       $attributes = self::generateAttributes($attributes);
 
       if (!!strlen($attributes))
