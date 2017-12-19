@@ -10,11 +10,8 @@ echo "\n";echo "\n";
       "class" => "my-div",
       "style" => ["color" => "red", "font-size" => "14px"]
     ],
-    [
-      Html::element("h1", ["class" => "main-heading"], ["Välkommen!"])
-    ]
+    Html::element("h1", ["class" => "main-heading"], "Välkommen!")
   );
-  echo Html::h1([], ["ASDASDASD"]);
 echo "\n";
 echo "\n";
   echo Html::emptyElement(

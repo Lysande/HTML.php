@@ -76,7 +76,7 @@
      * @param  [type] $children   [description]
      * @return [type]             [description]
      */
-    public static function element($elementName, $attributes = [], $children = [])
+    public static function element($elementName, $attributes = [], ...$children)
     {
       $element = self::generateElementTemplate($elementName);
       $attributes = self::generateAttributes($attributes);
