@@ -31,14 +31,14 @@
     /**
      * Generic methods.
      */
-    protected static function generateElementTemplate($elementName, $isEmpty = 0x0)
+    protected static function generateElementTemplate($tag, $isEmpty = 0x0)
     {
       if ($isEmpty == ElementType::EMPTY_ELEMENT)
       {
-        return "<$elementName%s>";
+        return "<$tag%s>";
       }
 
-      return "<$elementName%s>%s</$elementName>";
+      return "<$tag%s>%s</$tag>";
     }
 
     protected static function generateAttributes($attributes, $format = "")
@@ -70,11 +70,6 @@
       return implode($format->getCombinator(), $attributes);
     }
 
-    protected static function generateChildren($children = [])
-    {
-      return implode(" ", $children);
-    }
-
     /**
      * Creates a element
      * @param  [type] $attributes [description]
@@ -85,7 +80,7 @@
     {
       $element = self::generateElementTemplate($elementName);
       $attributes = self::generateAttributes($attributes);
-      $children = self::generateChildren($children);
+      $children = implode(" ", $children);
 
       if (!!strlen($attributes))
       {
