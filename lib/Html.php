@@ -26,7 +26,7 @@
       $args = array_merge([$element], $arguments);
       $method = $type === ElementType::EMPTY_ELEMENT ? 'emptyElement' : 'element';
 
-      call_user_func_array(['self', $method], $args);
+      return call_user_func_array(['self', $method], $args);
     }
 
     /**
