@@ -3,4 +3,11 @@
   include "lib/Html.php";
 
   echo Html::emptyElement("!doctype html");
-  print_r(Html::html([], 'asd'));
+  echo Html::html([],
+    Html::head([],
+      Html::title([], 'Html — Elm-inspired HTML generation library for PHP')
+    ),
+    Html::body([],
+      Html::h1([], 'Welcome!')
+    )
+  );
